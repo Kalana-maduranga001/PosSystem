@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POS System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> <!-- Coffee-themed font -->
+    <style>
+        body {
+            background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #f8f9fa;
+            overflow-x: hidden;
+            font-family: 'Pacifico', cursive;
+        }
+
+        .nav-link {
+            color: #f8f9fa !important;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .topbar {
+            height: 64px;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: white;
+            display: flex;
+            align-items: center;
+            padding-left: 1.5rem;
+            font-weight: 500;
+            font-size: 1.6em;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+        }
+
+        nav.bg-light {
+            background-color: rgba(0, 0, 0, 0.85) !important;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card {
+            background-color: rgba(0, 0, 0, 0.75);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        /*table style*/
+
+
+        /* Coffee-Themed Table */
+        .table {
+            background-color: rgba(200, 140, 98, 0.1); /* Light coffee brown background */
+            color: #f1f1f1;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .table thead {
+            background-color: rgba(105, 52, 27, 0.7); /* Dark coffee brown for the header */
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .table th, .table td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05); /* Slightly lighter brown for even rows */
+        }
+
+        .table tbody tr:hover {
+            background-color: rgba(165, 85, 50, 0.2); /* Coffee-colored hover effect */
+        }
+
+        .table-bordered {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+
+
+
+
+        .form-control,
+        .form-select,
+        textarea {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid #ccc;
+            color: #fff;
+        }
+
+        .form-control::placeholder,
+        textarea::placeholder {
+            color: #ccc;
+        }
+
+        .btn {
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: #6c757d;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn-secondary {
+            background-color: #adb5bd;
+        }
+
+        /*coffee Home Animation */
+
+        .home-bg {
+            background-color: rgba(34, 24, 19, 0.9); /* Deep coffee brown */
+            background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1950&q=80'); /* Optional: Background image for coffee */
+            background-size: cover;
+            background-position: center;
+            color: #f8f9fa;
+            position: relative;
+            padding: 50px 0; /* Add space for padding */
+            height: auto; /* Allow content to adjust height as needed */
+            max-width: 100%;
+            overflow: hidden; /* Prevent any element from overflowing */
+            border-radius: 8px; /* Add a soft rounded corner to the section */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Add shadow to make content pop */
+        }
+
+        /* Animated Text */
+        .animated-text {
+            font-size: 2.5rem;
+            font-weight: bold;
+            animation: fadeIn 2s ease-out infinite alternate; /* Text fading effect */
+            color: white;
+            margin-bottom: 20px; /* Space between title and description */
+        }
+
+        /* FadeIn Animation */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .home-bg {
+                padding: 30px 10px; /* Adjust padding for mobile screens */
+            }
+
+            .animated-text {
+                font-size: 1.8rem; /* Adjust font size for smaller screens */
+            }
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <nav class="col-auto bg-light d-flex flex-column align-items-center vh-100 py-3 border-end">
+            <ul class="nav nav-pills flex-column mb-auto text-center">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" aria-current="page" id="home-btn">
+                        <i class="bi bi-cup-hot fs-4"></i> <!-- Coffee cup for Home -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link" id="dashboard-btn">
+                        <i class="bi bi-clipboard-data fs-4"></i> <!-- Dashboard stats -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link" id="customer-btn">
+                        <i class="bi bi-people fs-4"></i> <!-- Customers -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link" id="item-btn">
+                        <i class="bi bi-cup-straw fs-4"></i> <!-- Menu Items (like drinks) -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link" id="order-btn">
+                        <i class="bi bi-receipt-cutoff fs-4"></i> <!-- Orders -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link" id="settings-btn">
+                        <i class="bi bi-gear-wide fs-4"></i> <!-- Settings -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link" id="help-btn">
+                        <i class="bi bi-info-circle fs-4"></i> <!-- Help -->
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+
+
+        <div class="col px-0">
+            <div class="topbar">
+                Home
+
+            </div>
+
+            <section id="home-content">
+                <div class="container mt-5">
+                    <div class="p-5 text-center rounded-4 shadow home-bg">
+                        <h1 class="mb-3 animated-text">Welcome to Brew & Relax ☕</h1>
+                        <p class="lead animated-text" style="font-size: 1.25rem;">Where every cup is an experience.</p>
+                        <p class="animated-text" style="max-width: 600px; margin: 0 auto;">
+                            Come for the coffee, stay for the vibe. Let us brew your favorite drink while you enjoy the warmth of our cozy shop.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+
+            <!--customer content-->
+            <section id="customer-content" style="display: none;">
+                <div class="container mt-3">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <form class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="fname" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="fname">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lname" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lname">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">E-mail</label>
+                                    <input type="text" class="form-control" id="email">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="text" class="form-control" id="phone">
+                                </div>
+                                <div class="col-12">
+                                    <label for="address" class="form-label">Address</label>
+                                    <textarea class="form-control" id="address" rows="3"></textarea>
+                                </div>
+                                <div class="col-12 text-end">
+                                    <button id="customer_save" type="button" class="btn btn-success me-2">Save</button>
+                                    <button id="customer_update" type="button" class="btn btn-primary me-2">Update</button>
+                                    <button id="customer_delete" type="button" class="btn btn-danger me-2">Delete</button>
+                                    <button id="customer_reset" type="button" class="btn btn-secondary">Reset</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <h5>Customer List</h5>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>First</th>
+                            <th>Last</th>
+                            <th>E-mail</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                        </tr>
+                        </thead>
+                        <tbody id="customer-tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!--item content-->
+            <section id="item-content" style="display: none;">
+                <div class="container mt-3">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <form class="row g-3">
+                                <div class="col-md-4">
+                                    <label for="item" class="form-label">Item</label>
+                                    <input type="text" class="form-control" id="item">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="qty" class="form-label">Quantity</label>
+                                    <input type="text" class="form-control" id="qty">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="price" class="form-label">Price</label>
+                                    <input type="text" class="form-control" id="price">
+                                </div>
+                                <div class="col-12">
+                                    <label for="description" class="form-label">Description</label>
+                                    <textarea class="form-control" id="description" rows="3"></textarea>
+                                </div>
+                                <div class="col-12 text-end">
+                                    <button type="button" class="btn btn-primary me-2">Save</button>
+                                    <button type="button" class="btn btn-secondary">Reset</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <h5>Item List</h5>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- place order content -->
+            <section id="order-content" style="display: none;">
+                <div class="container mt-3">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <form class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="order-customer" class="form-label">Select Customer</label>
+                                    <select class="form-select" id="order-customer">
+                                        <option selected disabled>Choose...</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="order-date" class="form-label">Date</label>
+                                    <input type="date" class="form-control" id="order-date">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="order-item" class="form-label">Select Item</label>
+                                    <select class="form-select" id="order-item">
+                                        <option selected disabled>Choose...</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="order-qty" class="form-label">Quantity</label>
+                                    <input type="number" class="form-control" id="order-qty" min="1">
+                                </div>
+
+                                <div class="col-md-4 align-self-end">
+                                    <button type="button" class="btn btn-success w-100" id="add-to-order">Add to Order</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <h5>Order Summary</h5>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                        <tr>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Remove</th>
+                        </tr>
+                        </thead>
+                        <tbody id="order-summary">
+                        </tbody>
+                    </table>
+
+                    <div class="text-end">
+                        <button class="btn btn-primary">Place Order</button>
+                    </div>
+                </div>
+            </section>
+
+
+        </div>
+
+    </div>
+</div>
+
+<script src="assets/lib/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function showSection(sectionId, title, element) {
+        $('#home-content, #customer-content, #item-content, #order-content').hide();
+        $(sectionId).show();
+        $('.topbar').text(title);
+        $('.nav-link').removeClass('active');
+        $(element).addClass('active');
+    }
+
+    $('#home-btn').on('click', function () {
+        showSection('#home-content', 'Home', this);
+    });
+
+    $('#customer-btn').on('click', function () {
+        showSection('#customer-content', 'Customer', this);
+    });
+
+    $('#item-btn').on('click', function () {
+        showSection('#item-content', 'Item', this);
+    });
+
+    $('#order-btn').on('click', function () {
+        showSection('#order-content', 'Place Order', this);
+    });
+
+    let customers = [];
+    let selectedIndex = -1;
+
+    function resetCustomerForm() {
+        $('#fname, #lname, #email, #phone, #address').val('');
+        selectedIndex = -1;
+    }
+
+    function renderCustomers() {
+        const tbody = $('#customer-tbody');
+        tbody.empty();
+        customers.forEach((cust, index) => {
+            tbody.append(`
+            <tr onclick="selectCustomer(${index})">
+                <td>${index + 1}</td>
+                <td>${cust.fname}</td>
+                <td>${cust.lname}</td>
+                <td>${cust.email}</td>
+                <td>${cust.phone}</td>
+                <td>${cust.address}</td>
+            </tr>
+        `);
+        });
+    }
+
+    function selectCustomer(index) {
+        const cust = customers[index];
+        $('#fname').val(cust.fname);
+        $('#lname').val(cust.lname);
+        $('#email').val(cust.email);
+        $('#phone').val(cust.phone);
+        $('#address').val(cust.address);
+        selectedIndex = index;
+    }
+
+    $('#customer_save').on('click', () => {
+        const customer = {
+            fname: $('#fname').val(),
+            lname: $('#lname').val(),
+            email: $('#email').val(),
+            phone: $('#phone').val(),
+            address: $('#address').val()
+        };
+
+        if (!customer.fname || !customer.lname) {
+            Swal.fire('Validation Error', 'First Name and Last Name are required.', 'warning');
+            return;
+        }
+
+        customers.push(customer);
+        renderCustomers();
+        resetCustomerForm();
+    });
+
+    $('#customer_update').on('click', () => {
+        if (selectedIndex === -1) {
+            Swal.fire('No Selection', 'Please select a customer to update.', 'info');
+            return;
+        }
+
+        customers[selectedIndex] = {
+            fname: $('#fname').val(),
+            lname: $('#lname').val(),
+            email: $('#email').val(),
+            phone: $('#phone').val(),
+            address: $('#address').val()
+        };
+        renderCustomers();
+        resetCustomerForm();
+    });
+
+    $('#customer_delete').on('click', () => {
+        if (selectedIndex === -1) {
+            Swal.fire('No Selection', 'Please select a customer to delete.', 'info');
+            return;
+        }
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'This customer will be removed!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!'
+        }).then(result => {
+            if (result.isConfirmed) {
+                customers.splice(selectedIndex, 1);
+                renderCustomers();
+                resetCustomerForm();
+            }
+        });
+    });
+
+    $('#customer_reset').on('click', resetCustomerForm);
+
+
+</script>
+
+</body>
+</html>
