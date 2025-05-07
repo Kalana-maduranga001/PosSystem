@@ -461,6 +461,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script src="Controll/CustomerController.js" type="module"></script>
+
 <script>
     function showSection(sectionId, title, element) {
         $('#home-content, #customer-content, #item-content, #order-content').hide();
@@ -485,101 +487,6 @@
     $('#order-btn').on('click', function () {
         showSection('#order-content', 'Place Order', this);
     });
-
-    let customers = [];
-    let selectedIndex = -1;
-
-    function resetCustomerForm() {
-        $('#fname, #lname, #email, #phone, #address').val('');
-        selectedIndex = -1;
-    }
-
-    function renderCustomers() {
-        const tbody = $('#customer-tbody');
-        tbody.empty();
-        customers.forEach((cust, index) => {
-            tbody.append(`
-            <tr onclick="selectCustomer(${index})">
-                <td>${index + 1}</td>
-                <td>${cust.fname}</td>
-                <td>${cust.lname}</td>
-                <td>${cust.email}</td>
-                <td>${cust.phone}</td>
-                <td>${cust.address}</td>
-            </tr>
-        `);
-        });
-    }
-
-    function selectCustomer(index) {
-        const cust = customers[index];
-        $('#fname').val(cust.fname);
-        $('#lname').val(cust.lname);
-        $('#email').val(cust.email);
-        $('#phone').val(cust.phone);
-        $('#address').val(cust.address);
-        selectedIndex = index;
-    }
-
-    $('#customer_save').on('click', () => {
-        const customer = {
-            fname: $('#fname').val(),
-            lname: $('#lname').val(),
-            email: $('#email').val(),
-            phone: $('#phone').val(),
-            address: $('#address').val()
-        };
-
-        if (!customer.fname || !customer.lname) {
-            Swal.fire('Validation Error', 'First Name and Last Name are required.', 'warning');
-            return;
-        }
-
-        customers.push(customer);
-        renderCustomers();
-        resetCustomerForm();
-    });
-
-    $('#customer_update').on('click', () => {
-        if (selectedIndex === -1) {
-            Swal.fire('No Selection', 'Please select a customer to update.', 'info');
-            return;
-        }
-
-        customers[selectedIndex] = {
-            fname: $('#fname').val(),
-            lname: $('#lname').val(),
-            email: $('#email').val(),
-            phone: $('#phone').val(),
-            address: $('#address').val()
-        };
-        renderCustomers();
-        resetCustomerForm();
-    });
-
-    $('#customer_delete').on('click', () => {
-        if (selectedIndex === -1) {
-            Swal.fire('No Selection', 'Please select a customer to delete.', 'info');
-            return;
-        }
-
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'This customer will be removed!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!'
-        }).then(result => {
-            if (result.isConfirmed) {
-                customers.splice(selectedIndex, 1);
-                renderCustomers();
-                resetCustomerForm();
-            }
-        });
-    });
-
-    $('#customer_reset').on('click', resetCustomerForm);
-
 
 </script>
 
