@@ -122,6 +122,7 @@
         }
 
         /* Background image zoom effect */
+
         .coffee-card::after {
             content: '';
             position: absolute;
@@ -172,8 +173,6 @@
                 transform: scale(1.1);
             }
         }
-
-
         .coffee-card.americano::after {
             background-image: url('assets/Image/522979505-shutterstock_1973536478.png');
         }
@@ -185,6 +184,8 @@
         .coffee-card.cappuccino::after {
             background-image: url('assets/Image/coffee.jpeg');
         }
+
+
 
         /* Coffee-Themed Table */
         .table {
@@ -363,6 +364,108 @@
                 /*padding: 0 10px;*/
             }
         }
+
+        /*setting section*/
+
+        .contact-card {
+            background: linear-gradient(135deg, #3e3e3e, #1a1a1a);
+            padding: 40px;
+            border-radius: 15px;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            animation: glowBorder 6s infinite alternate;
+        }
+
+        /* Title */
+        .contact-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            text-align: center;
+            animation: glowText 3s infinite ease-in-out;
+        }
+
+        /* Subtext */
+        .contact-subtext {
+            text-align: center;
+            font-size: 1rem;
+            color: #ccc;
+            margin-bottom: 30px;
+            animation: flicker 5s infinite alternate;
+        }
+
+        /* Form Layout */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form label {
+            display: block;
+        }
+
+        /* Inputs and Textarea */
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background-color: #2b2b2b;
+            color: white;
+            font-size: 1rem;
+            resize: none;
+            outline: none;
+            animation: pulse 4s infinite;
+        }
+
+        /* Button */
+        .contact-form button {
+            padding: 12px;
+            background-color: #d4a373;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #1a1a1a;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            animation: bounce 2s infinite;
+        }
+
+        .contact-form button:hover {
+            background-color: #e0b58c;
+        }
+
+        /* Animations */
+        @keyframes glowBorder {
+            0% { box-shadow: 0 0 10px #d4a373; }
+            100% { box-shadow: 0 0 25px #d4a373; }
+        }
+
+        @keyframes glowText {
+            0% { text-shadow: 0 0 5px #fff; }
+            100% { text-shadow: 0 0 15px #fff; }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { background-color: #2b2b2b; }
+            50% { background-color: #333333; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+
+
     </style>
 </head>
 <body>
@@ -655,9 +758,22 @@
 
      <!--setting Section-->
             <section id="Setting-content" style="display: none;">
-                <div class="container mt-3">
-                    <div class="card mb-4">
-
+                <div class="container mt-5">
+                    <div class="contact-card">
+                        <h2 class="contact-title">Need Help? Contact Us</h2>
+                        <p class="contact-subtext">If you're facing any issues with the website or have suggestions, we’d love to hear from you!</p>
+                        <form class="contact-form">
+                            <label>
+                                <input type="text" placeholder="Your Name" required>
+                            </label>
+                            <label>
+                                <input type="email" placeholder="Your Email" required>
+                            </label>
+                            <label>
+                                <textarea placeholder="Describe your issue..." rows="5" required></textarea>
+                            </label>
+                            <button type="submit">Send Message</button>
+                        </form>
                     </div>
                 </div>
 
