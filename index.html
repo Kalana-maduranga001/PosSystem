@@ -143,12 +143,29 @@
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Add shadow to make content pop */
         }
 
+        .black-style{
+            color: #191818;
+            text-shadow:
+                    0 0 5px white,
+                    0 0 10px white,
+                    0 0 15px white;
+
+            border: 2px solid white;
+            box-shadow:
+                    0 0 5px white,
+                    0 0 10px white,
+                    0 0 15px white;
+
+            border-radius: 10px;
+            padding: 10px 15px;
+            display: inline-block;
+        }
+
         /* Animated Text */
         .animated-text {
             font-size: 2.5rem;
             font-weight: bold;
             animation: fadeIn 2s ease-out infinite alternate; /* Text fading effect */
-            color: #ff934e;
             margin-bottom: 20px; /* Space between title and description */
         }
 
@@ -284,11 +301,13 @@
             <section id="home-content">
                 <div class="container mt-5">
                     <div class="p-5 text-center rounded-4 shadow home-bg">
-                        <h1 class="mb-3 animated-text">Welcome to Brew & Relax ☕</h1>
-                        <p class="lead animated-text" style="font-size: 1.25rem;">Where every cup is an experience.</p>
-                        <p class="animated-text" style="max-width: 600px; margin: 0 auto;">
-                            Come for the coffee, stay for the vibe. Let us brew your favorite drink while you enjoy the warmth of our cozy shop.
-                        </p>
+                        <div class="black-style">
+                            <h1 class="mb-3 animated-text" id="black-style">Welcome to Brew & Relax ☕</h1>
+                            <p class="lead animated-text" style="font-size: 1.25rem;" >Where every cup is an experience.</p>
+                            <p class="animated-text" style="max-width: 600px; margin: 0 auto;">
+                                Come for the coffee, stay for the vibe. Let us brew your favorite drink while you enjoy the warmth of our cozy shop.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
