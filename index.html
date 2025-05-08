@@ -844,7 +844,7 @@
             </section>
 
 
-            <section id="About-content">
+            <section id="About-content" style="display: none;">
                 <div class="about-credits">
                     <div class="credits-text">
                         <p>Kalana Maduranga</p>
@@ -859,20 +859,7 @@
                 Your browser does not support the audio element.
             </audio>
 
-            <script>
-                const music = document.getElementById('background-music');
 
-                const startMusic = () => {
-                    music.play().catch(e => {
-                        console.log("Autoplay blocked:", e);
-                    });
-                    document.removeEventListener('click', startMusic);
-                    document.removeEventListener('touchstart', startMusic);
-                };
-
-                document.addEventListener('click', startMusic);
-                document.addEventListener('touchstart', startMusic);
-            </script>
 
         </div>
     </div>
@@ -889,13 +876,14 @@
 
 <script>
     function showSection(sectionId, title, element) {
-        $('#home-content,#dashboard-content,#customer-content,#item-content,#order-content,#Setting-content,#About-content').hide();
-        $(sectionId).show();
-        $('.topbar').text(title);
-        $('.nav-link').removeClass('active');
-        $(element).addClass('active');
+        $('#home-content, #dashboard-content, #customer-content, #item-content, #order-content, #Setting-content, #About-content').hide();  // Hide all sections
+        $(sectionId).show();  // Show the targeted section
+        $('.topbar').text(title);  // Update the title in the topbar
+        $('.nav-link').removeClass('active');  // Remove 'active' class from all nav-links
+        $(element).addClass('active');  // Add 'active' class to the clicked element
     }
 
+    // Event listeners for each button
     $('#home-btn').on('click', function () {
         showSection('#home-content', 'Home', this);
     });
@@ -906,7 +894,7 @@
 
     $('#dashboard-btn').on('click', function () {
         showSection('#dashboard-content', 'Dashboard', this);
-    })
+    });
 
     $('#item-btn').on('click', function () {
         showSection('#item-content', 'Item', this);
@@ -923,6 +911,21 @@
     $('#About-btn').on('click', function () {
         showSection('#About-content', 'About', this);
     });
+
+    // Background music setup and autoplay on first click or touch
+    const music = document.getElementById('background-music');
+
+    const startMusic = () => {
+        music.play().catch(e => {
+            console.log("Autoplay blocked:", e);
+        });
+        document.removeEventListener('click', startMusic);  // Remove the event listener after first play attempt
+        document.removeEventListener('touchstart', startMusic);  // Remove the event listener after first play attempt
+    };
+
+    // Add event listeners for click and touch events
+    document.addEventListener('click', startMusic);
+    document.addEventListener('touchstart', startMusic);
 
 </script>
 
