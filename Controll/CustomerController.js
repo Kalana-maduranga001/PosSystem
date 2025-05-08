@@ -8,11 +8,15 @@ function resetCustomerForm() {
     selectedIndex = -1;
 }
 
+//This defines a function called renderCustomers that will update the table with current customer data
 function renderCustomers() {
-    const tbody = $('#customer-tbody');
-    tbody.empty();
+    const tbody = $('#customer-tbody'); //Selects the <tbody> element with the ID customer-tbody using jQuery.
+                                        //Stores it in a variable tbody for easy reuse.
+    tbody.empty(); //Clears out all existing rows from the table body to avoid duplicate entries.
     customers.forEach((cust, index) => {
+        //Loops through each customer object in the customers array.
         tbody.append(`
+<!--          Then it appends this row to the <tbody>.-->
             <tr>
                 <td>${index + 1}</td>
                 <td>${cust.fname}</td>

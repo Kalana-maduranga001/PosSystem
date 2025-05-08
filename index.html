@@ -371,8 +371,10 @@
                                     <textarea class="form-control" id="description" rows="3"></textarea>
                                 </div>
                                 <div class="col-12 text-end">
-                                    <button type="button" class="btn btn-primary me-2">Save</button>
-                                    <button type="button" class="btn btn-secondary">Reset</button>
+                                    <button id="item_save"   type="button" class="btn btn-success me-2">Save</button>
+                                    <button id="item_update" type="button" class="btn btn-primary me-2">Update</button>
+                                    <button id="item_delete" type="button" class="btn btn-danger me-2">Delete</button>
+                                    <button id="item_reset"  type="button" class="btn btn-secondary">Reset</button>
                                 </div>
                             </form>
                         </div>
@@ -389,7 +391,7 @@
                             <th>Description</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tbody-item">
                         </tbody>
                     </table>
                 </div>
@@ -462,6 +464,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script src="Controll/CustomerController.js" type="module"></script>
+<script src="Controll/itemController.js" type="module"></script>
 
 <script>
     function showSection(sectionId, title, element) {
