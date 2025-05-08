@@ -7,10 +7,10 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> <!-- Coffee-themed font -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 
         body {
             background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
@@ -216,8 +216,6 @@
         .table-bordered {
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
-
-
 
         .form-control,
         .form-select,
@@ -876,11 +874,11 @@
 
 <script>
     function showSection(sectionId, title, element) {
-        $('#home-content, #dashboard-content, #customer-content, #item-content, #order-content, #Setting-content, #About-content').hide();  // Hide all sections
-        $(sectionId).show();  // Show the targeted section
-        $('.topbar').text(title);  // Update the title in the topbar
-        $('.nav-link').removeClass('active');  // Remove 'active' class from all nav-links
-        $(element).addClass('active');  // Add 'active' class to the clicked element
+        $('#home-content, #dashboard-content, #customer-content, #item-content, #order-content, #Setting-content, #About-content').hide();
+        $(sectionId).show();
+        $('.topbar').text(title);
+        $('.nav-link').removeClass('active');
+        $(element).addClass('active');
     }
 
     // Event listeners for each button
