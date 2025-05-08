@@ -466,18 +466,28 @@
 
         /*about Section */
 
+        #About-content {
+            display: none;
+            height: 100vh; /* Full viewport height */
+            margin: 0;
+            padding: 0;
+        }
+
         .about-credits {
+            height: 100vh;
             background-color: rgba(248, 246, 246, 0.4);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             color: #1c1c1c;
             font-family: 'Courier New', Courier, monospace;
             overflow: hidden;
-            height: 350px;
             position: relative;
             border: none;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 0; /* Remove rounded corners for full-screen */
+            box-shadow: none; /* Optional: remove shadow on full screen */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .credits-text {
@@ -508,9 +518,6 @@
                 opacity: 0;
             }
         }
-
-
-
 
 
     </style>
@@ -827,24 +834,21 @@
             </section>
 
 
-            <!-- About Section -->
-            <section id="About-content" style="display: none;">
-                <div class="container mt-3">
-                    <div class="card mb-4 about-credits">
-                        <div class="credits-text">
-                            <p>Kalana Maduranga</p>
-                            <p>I am a passionate and dedicated Full Stack Developer with a deep love for building modern, user-friendly, and efficient web applications. With expertise spanning from intuitive frontend interfaces to robust backend systems, I specialize in delivering clean, maintainable, and scalable code. I believe technology should not only solve problems but also inspire. Over the years, I’ve mastered working with modern stacks and frameworks, and I’m always exploring new tools to enhance user experience and performance. Whether it’s crafting responsive designs, setting up powerful APIs, or integrating complex databases, I aim to create digital solutions that matter. I take pride in my attention to detail, my commitment to clean code, and my constant drive to learn and evolve in this ever-changing field. Let’s build the future — one line of code at a time.</p>
-                            <p>© 2025 All Rights Reserved, Kalana®</p>
-                        </div>
-
-                        <audio autoplay loop>
-                            <source src="assets/Adieo/1-01.%20Key.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-
+            <section id="About-content">
+                <div class="about-credits">
+                    <div class="credits-text">
+                        <p>Kalana Maduranga</p>
+                        <p>I am a passionate and dedicated Full Stack Developer with a deep love for building modern, user-friendly, and efficient web applications. With expertise spanning from intuitive frontend interfaces to robust backend systems, I specialize in delivering clean, maintainable, and scalable code. I believe technology should not only solve problems but also inspire. Over the years, I’ve mastered working with modern stacks and frameworks, and I’m always exploring new tools to enhance user experience and performance. Whether it’s crafting responsive designs, setting up powerful APIs, or integrating complex databases, I aim to create digital solutions that matter. I take pride in my attention to detail, my commitment to clean code, and my constant drive to learn and evolve in this ever-changing field. Let’s build the future — one line of code at a time.</p>
+                        <p>© 2025 All Rights Reserved, Kalana®</p>
                     </div>
+
+                    <audio autoplay loop>
+                        <source src="assets/Adieo/1-01.%20Key.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
                 </div>
             </section>
+
 
 
         </div>
