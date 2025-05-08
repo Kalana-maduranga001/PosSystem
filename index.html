@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> <!-- Coffee-themed font -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
         body {
             background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
             background-size: cover;
@@ -60,6 +63,128 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.5);
         }
 
+        /*Dashboard Clock and Date Styles */
+
+        #analog-clock {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .clock .hour,
+        .clock .minute,
+        .clock .second {
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background: white;
+            top: 50%;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+        }
+
+        .clock .hour {
+            height: 4px;
+            background: #f8f9fa;
+        }
+
+        .clock .minute {
+            height: 3px;
+            background: #ced4da;
+        }
+
+        .clock .second {
+            height: 2px;
+            background: #adb5bd;
+        }
+
+        /*dashboard menu */
+
+
+        .barista-dashboard h2 {
+            font-family: 'Pacifico', cursive;
+            color: #fff;
+        }
+
+        .coffee-card {
+            position: relative;
+            height: 280px;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+            overflow: hidden;
+            color: white;
+            background: none;
+        }
+
+        /* Background image zoom effect */
+        .coffee-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+            animation: zoomInOut 8s ease-in-out infinite;
+        }
+
+        /* Dark overlay */
+        .coffee-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        /* Content on top */
+        .coffee-card .card-body {
+            position: relative;
+            z-index: 2;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .coffee-card .card-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            font-family: 'Pacifico', cursive;
+            color: #f8f8f8;
+            text-shadow: 0 0 8px #fff;
+        }
+
+        .coffee-card .card-text {
+            font-size: 1rem;
+            color: #ddd;
+        }
+
+        /* Zoom keyframes */
+        @keyframes zoomInOut {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+
+        .coffee-card.americano::after {
+            background-image: url('assets/Image/522979505-shutterstock_1973536478.png');
+        }
+
+        .coffee-card.espresso::after {
+            background-image: url('assets/Image/Espresso-Macchiato-Beitragsbild.jpg');
+        }
+
+        .coffee-card.cappuccino::after {
+            background-image: url('assets/Image/coffee.jpeg');
+        }
 
         /* Coffee-Themed Table */
         .table {
@@ -234,15 +359,10 @@
             nav .nav-link {
                 padding: 8px;
             }
-
             .container, .container-fluid {
                 /*padding: 0 10px;*/
             }
         }
-
-
-
-
     </style>
 </head>
 <body>
@@ -283,7 +403,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link" id="help-btn">
+                    <a href="#" class="nav-link" id="About-btn">
                         <i class="bi bi-info-circle fs-4"></i> <!-- Help -->
                     </a>
                 </li>
@@ -291,13 +411,11 @@
         </nav>
 
 
-
+        <!--home Page-->
         <div class="col px-0">
             <div class="topbar">
                 Home
-
             </div>
-
             <section id="home-content">
                 <div class="container mt-5">
                     <div class="p-5 text-center rounded-4 shadow home-bg">
@@ -312,6 +430,69 @@
                 </div>
             </section>
 
+            <!-- Dashboard stats -->
+            <section id="dashboard-content" style="display: none;">
+                <div class="container mt-3">
+                    <div class="card mb-4">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+                            <div class="date-time">
+                                <p id="current-date" class="mb-1"></p>
+                                <h2 id="current-time" class="fw-bold"></h2>
+                            </div>
+                            <div id="analog-clock">
+                                <div class="clock">
+                                    <div class="hour"></div>
+                                    <div class="minute"></div>
+                                    <div class="second"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<!--                barista menu dashboard-->
+
+                <!-- Customer Favorite Drinks Section -->
+                <section class="container mt-4">
+                    <div class="barista-dashboard">
+                        <h2 class="text-center mb-4">Our Customer Favorite Drinks</h2>
+                        <div class="row g-4">
+
+                            <!-- Americano -->
+                            <div class="col-md-4">
+                                <div class="card coffee-card americano">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Americano</h5>
+                                        <p class="card-text">Smooth and bold, hot or iced.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Espresso -->
+                            <div class="col-md-4">
+                                <div class="card coffee-card espresso">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Espresso</h5>
+                                        <p class="card-text">Pure intensity in a small shot.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cappuccino -->
+                            <div class="col-md-4">
+                                <div class="card coffee-card cappuccino">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Cappuccino</h5>
+                                        <p class="card-text">Rich foam and warm comfort.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+            </section>
 
             <!--customer content-->
             <section id="customer-content" style="display: none;">
@@ -472,9 +653,27 @@
                 </div>
             </section>
 
+     <!--setting Section-->
+            <section id="Setting-content" style="display: none;">
+                <div class="container mt-3">
+                    <div class="card mb-4">
+
+                    </div>
+                </div>
+
+            </section>
+
+     <!--about Section-->
+            <section id="About-content" style="display: none;">
+                <div class="container mt-3">
+                    <div class="card mb-4">
+
+                    </div>
+                </div>
+
+            </section>
 
         </div>
-
     </div>
 </div>
 
@@ -484,10 +683,12 @@
 
 <script src="Controll/CustomerController.js" type="module"></script>
 <script src="Controll/itemController.js" type="module"></script>
+<script src="Controll/dashbordController.js" type="module"></script>
+
 
 <script>
     function showSection(sectionId, title, element) {
-        $('#home-content, #customer-content, #item-content, #order-content').hide();
+        $('#home-content,#dashboard-content,#customer-content,#item-content,#order-content,#Setting-content,#About-content').hide();
         $(sectionId).show();
         $('.topbar').text(title);
         $('.nav-link').removeClass('active');
@@ -502,12 +703,24 @@
         showSection('#customer-content', 'Customer', this);
     });
 
+    $('#dashboard-btn').on('click', function () {
+        showSection('#dashboard-content', 'Dashboard', this);
+    })
+
     $('#item-btn').on('click', function () {
         showSection('#item-content', 'Item', this);
     });
 
     $('#order-btn').on('click', function () {
         showSection('#order-content', 'Place Order', this);
+    });
+
+    $('#settings-btn').on('click', function () {
+        showSection('#Setting-content', 'Setting', this);
+    });
+
+    $('#About-btn').on('click', function () {
+        showSection('#About-content', 'About', this);
     });
 
 </script>
