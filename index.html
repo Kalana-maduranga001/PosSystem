@@ -851,10 +851,11 @@
                 </div>
             </section>
 
-            <audio id="background-music" preload="auto" loop>
-<!--                <source src="./assets/Adieo/1-01.%20Key.mp3" type="audio/mpeg">-->
-                Your browser does not support the audio element.
-            </audio>
+<!--            <audio id="background-music" preload="auto" loop>-->
+<!--&lt;!&ndash;                <source src="./assets/Adieo/1-01.%20Key.mp3" type="audio/mpeg">&ndash;&gt;-->
+<!--                Your browser does not support the audio element.-->
+<!--            </audio>-->
+
         </div>
     </div>
 </div>
@@ -867,6 +868,7 @@
 <script src="./Controll/CustomerController.js" type="module"></script>
 <script src="./Controll/itemController.js" type="module"></script>
 <script src="./Controll/dashbordController.js" type="module"></script>
+<script src="./Controll/OrderManage.js" type="module"></script>
 
 <script>
     function showSection(sectionId, title, element) {
@@ -906,18 +908,18 @@
         showSection('#About-content', 'About', this);
     });
 
-    // Background music setup and autoplay on first click or touch
-    const music = document.getElementById('background-music');
-    const startMusic = () => {
-        music.play().catch(e => {
-            console.log("Autoplay blocked:", e);
-        });
-        document.removeEventListener('click', startMusic);
-        document.removeEventListener('touchstart', startMusic);
-    };
-
-    document.addEventListener('click', startMusic);
-    document.addEventListener('touchstart', startMusic);
+    // // Background music setup and autoplay on first click or touch
+    // const music = document.getElementById('background-music');
+    // const startMusic = () => {
+    //     music.play().catch(e => {
+    //         console.log("Autoplay blocked:", e);
+    //     });
+    //     document.removeEventListener('click', startMusic);
+    //     document.removeEventListener('touchstart', startMusic);
+    // };
+    //
+    // document.addEventListener('click', startMusic);
+    // document.addEventListener('touchstart', startMusic);
 
 </script>
 
