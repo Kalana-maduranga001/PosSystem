@@ -248,6 +248,26 @@
         }
 
 
+        @media (max-width: 576px) {
+            .table-responsive {
+                overflow-x: auto;
+            }
+
+            .form-label {
+                font-size: 0.9rem;
+            }
+
+            input.form-control,
+            textarea.form-control {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+
+            .btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
 
 
         /*======= end of table style ======*/
@@ -273,39 +293,6 @@
         }
 
 
-        @media (max-width: 576px) {
-            .container {
-                padding: 0 10px;
-            }
-
-            .form-label {
-                font-size: 0.9rem;
-            }
-
-            input.form-control,
-            textarea.form-control {
-                font-size: 0.9rem;
-                padding: 10px;
-            }
-
-            .btn {
-                font-size: 0.9rem;
-                padding: 10px;
-                width: 100%;
-            }
-
-            .card {
-                padding: 10px;
-            }
-
-            table {
-                font-size: 0.75rem;
-            }
-
-            .table-responsive {
-                overflow-x: auto;
-            }
-        }
 
         /*coffee Home Animation */
 
@@ -548,7 +535,7 @@
         .credits-text {
             position: absolute;
             width: 100%;
-            animation: scroll-up 25s linear infinite;
+            animation: scroll-up 20s linear infinite;
             text-align: center;
             font-size: 1.2rem;
             line-height: 2rem;
@@ -722,31 +709,31 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <form class="row g-3">
-                                <div class="col-12">
+                                <div class="col-md-6">
                                     <label for="fname" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="fname" />
+                                    <input type="text" class="form-control" id="fname">
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-6">
                                     <label for="lname" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="lname" />
+                                    <input type="text" class="form-control" id="lname">
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-6">
                                     <label for="email" class="form-label">E-mail</label>
-                                    <input type="text" class="form-control" id="email" />
+                                    <input type="text" class="form-control" id="email">
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-6">
                                     <label for="phone" class="form-label">Phone</label>
-                                    <input type="text" class="form-control" id="phone" />
+                                    <input type="text" class="form-control" id="phone">
                                 </div>
                                 <div class="col-12">
                                     <label for="address" class="form-label">Address</label>
                                     <textarea class="form-control" id="address" rows="3"></textarea>
                                 </div>
-                                <div class="col-12 d-flex flex-wrap gap-2 justify-content-center">
-                                    <button id="customer_save" type="button" class="btn btn-success w-100">Save</button>
-                                    <button id="customer_update" type="button" class="btn btn-primary w-100">Update</button>
-                                    <button id="customer_delete" type="button" class="btn btn-danger w-100">Delete</button>
-                                    <button id="customer_reset" type="button" class="btn btn-secondary w-100">Reset</button>
+                                <div class="col-12 text-end">
+                                    <button id="customer_save" type="button" class="btn btn-success me-2">Save</button>
+                                    <button id="customer_update" type="button" class="btn btn-primary me-2">Update</button>
+                                    <button id="customer_delete" type="button" class="btn btn-danger me-2">Delete</button>
+                                    <button id="customer_reset" type="button" class="btn btn-secondary">Reset</button>
                                 </div>
                             </form>
                         </div>
@@ -754,23 +741,23 @@
 
                     <h5 class="text-light mb-3">Customer List</h5>
                     <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First</th>
-                                <th>Last</th>
-                                <th>E-mail</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                            </tr>
-                            </thead>
-                            <tbody id="customer-tbody"></tbody>
-                        </table>
-                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First</th>
+                            <th>Last</th>
+                            <th>E-mail</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                        </tr>
+                        </thead>
+                        <tbody id="customer-tbody">
+                        </tbody>
+                    </table>
                 </div>
+                    </div>
             </section>
-
 
             <!--item content-->
             <section id="item-content" style="display: none;">
