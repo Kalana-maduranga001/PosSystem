@@ -187,7 +187,9 @@
 
 
 
-        /* Coffee-Themed Table */
+        /*======== Coffee-Themed Table============ */
+
+
         .table {
             background-color: rgba(200, 140, 98, 0.1); /* Light coffee brown background */
             color: #f1f1f1;
@@ -203,32 +205,52 @@
         .table th, .table td {
             padding: 12px;
             text-align: center;
+            vertical-align: middle;
         }
 
         .table tbody tr:nth-child(even) {
-            background-color: rgba(255, 255, 255, 0.05); /* Slightly lighter brown for even rows */
+            background-color: rgba(255, 255, 255, 0.05); /* Slightly lighter for even rows */
         }
 
         .table tbody tr:hover {
-            background-color: rgba(165, 85, 50, 0.2); /* Coffee-colored hover effect */
+            background-color: rgba(165, 85, 50, 0.2); /* Hover effect */
         }
 
         .table-bordered {
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
-        .form-control,
-        .form-select,
-        textarea {
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid #ccc;
-            color: #fff;
+        .card {
+            background-color: rgba(51, 30, 20, 0.5); /* Semi-transparent coffee card background */
+            color: #f1f1f1;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .form-control::placeholder,
-        textarea::placeholder {
-            color: #ccc;
+        .form-label {
+            font-weight: bold;
+            color: #f8f3ef;
         }
+
+        input.form-control,
+        textarea.form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #f1f1f1;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        input.form-control:focus,
+        textarea.form-control:focus {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border-color: #c88c62;
+            box-shadow: 0 0 5px rgba(200, 140, 98, 0.5);
+        }
+
+
+
+
+        /*======= end of table style ======*/
 
         .btn {
             border: none;
@@ -248,6 +270,41 @@
 
         .btn-secondary {
             background-color: #adb5bd;
+        }
+
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .form-label {
+                font-size: 0.9rem;
+            }
+
+            input.form-control,
+            textarea.form-control {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+
+            .btn {
+                font-size: 0.9rem;
+                padding: 10px;
+                width: 100%;
+            }
+
+            .card {
+                padding: 10px;
+            }
+
+            table {
+                font-size: 0.75rem;
+            }
+
+            .table-responsive {
+                overflow-x: auto;
+            }
         }
 
         /*coffee Home Animation */
@@ -665,53 +722,55 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <form class="row g-3">
-                                <div class="col-md-6">
+                                <div class="col-12">
                                     <label for="fname" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="fname">
+                                    <input type="text" class="form-control" id="fname" />
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-12">
                                     <label for="lname" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="lname">
+                                    <input type="text" class="form-control" id="lname" />
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-12">
                                     <label for="email" class="form-label">E-mail</label>
-                                    <input type="text" class="form-control" id="email">
+                                    <input type="text" class="form-control" id="email" />
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-12">
                                     <label for="phone" class="form-label">Phone</label>
-                                    <input type="text" class="form-control" id="phone">
+                                    <input type="text" class="form-control" id="phone" />
                                 </div>
                                 <div class="col-12">
                                     <label for="address" class="form-label">Address</label>
                                     <textarea class="form-control" id="address" rows="3"></textarea>
                                 </div>
-                                <div class="col-12 text-end">
-                                    <button id="customer_save" type="button" class="btn btn-success me-2">Save</button>
-                                    <button id="customer_update" type="button" class="btn btn-primary me-2">Update</button>
-                                    <button id="customer_delete" type="button" class="btn btn-danger me-2">Delete</button>
-                                    <button id="customer_reset" type="button" class="btn btn-secondary">Reset</button>
+                                <div class="col-12 d-flex flex-wrap gap-2 justify-content-center">
+                                    <button id="customer_save" type="button" class="btn btn-success w-100">Save</button>
+                                    <button id="customer_update" type="button" class="btn btn-primary w-100">Update</button>
+                                    <button id="customer_delete" type="button" class="btn btn-danger w-100">Delete</button>
+                                    <button id="customer_reset" type="button" class="btn btn-secondary w-100">Reset</button>
                                 </div>
                             </form>
                         </div>
                     </div>
 
-                    <h5>Customer List</h5>
-                    <table class="table table-bordered">
-                        <thead class="table-light">
-                        <tr>
-                            <th>#</th>
-                            <th>First</th>
-                            <th>Last</th>
-                            <th>E-mail</th>
-                            <th>Phone</th>
-                            <th>Address</th>
-                        </tr>
-                        </thead>
-                        <tbody id="customer-tbody">
-                        </tbody>
-                    </table>
+                    <h5 class="text-light mb-3">Customer List</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>First</th>
+                                <th>Last</th>
+                                <th>E-mail</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                            </tr>
+                            </thead>
+                            <tbody id="customer-tbody"></tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
+
 
             <!--item content-->
             <section id="item-content" style="display: none;">
@@ -745,9 +804,9 @@
                         </div>
                     </div>
 
-                    <h5>Item List</h5>
+                    <h5 class="text-light mb-3">Item List</h5>
                     <table class="table table-bordered">
-                        <thead class="table-light">
+                        <thead>
                         <tr>
                             <th>#</th>
                             <th>Item</th>
@@ -799,9 +858,9 @@
                         </div>
                     </div>
 
-                    <h5>Order Summary</h5>
+                    <h5 class="text-light mb-3">Order List</h5>
                     <table class="table table-bordered">
-                        <thead class="table-light">
+                        <thead>
                         <tr>
                             <th>Item</th>
                             <th>Quantity</th>
