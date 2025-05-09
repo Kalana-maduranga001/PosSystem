@@ -852,7 +852,7 @@
             </section>
 
             <audio id="background-music" preload="auto" loop>
-                <source src="./assets/Adieo/1-01.%20Key.mp3" type="audio/mpeg">
+<!--                <source src="./assets/Adieo/1-01.%20Key.mp3" type="audio/mpeg">-->
                 Your browser does not support the audio element.
             </audio>
         </div>
@@ -908,16 +908,14 @@
 
     // Background music setup and autoplay on first click or touch
     const music = document.getElementById('background-music');
-
     const startMusic = () => {
         music.play().catch(e => {
             console.log("Autoplay blocked:", e);
         });
-        document.removeEventListener('click', startMusic);  // Remove the event listener after first play attempt
-        document.removeEventListener('touchstart', startMusic);  // Remove the event listener after first play attempt
+        document.removeEventListener('click', startMusic);
+        document.removeEventListener('touchstart', startMusic);
     };
 
-    // Add event listeners for click and touch events
     document.addEventListener('click', startMusic);
     document.addEventListener('touchstart', startMusic);
 
