@@ -20,6 +20,54 @@
             font-family: 'Pacifico', cursive;
         }
 
+        /* Sidebar base */
+        nav.sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 80px;
+            background-color: rgba(0, 0, 0, 0.85);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        /* Show sidebar when checkbox is checked */
+        #toggleSidebar:checked ~ nav.sidebar {
+            transform: translateX(0);
+        }
+
+        /* Toggle button */
+        .sidebar-toggle-label {
+            position: fixed;
+            top: 50%; /* Center vertically */
+            left: 0;
+            transform: translateY(-50%); /* Adjust from the middle */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: white;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            cursor: pointer;
+            z-index: 1100;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-toggle-label:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        #toggleSidebar:checked + .sidebar-toggle-label i {
+            transform: rotate(180deg);
+            transition: transform 0.3s ease;
+        }
+
         .nav-link {
             color: #f8f9fa !important;
             transition: background-color 0.3s ease;
@@ -33,35 +81,20 @@
             background-color: rgba(255, 255, 255, 0.3);
         }
 
-        .topbar {
-            height: 64px;
-            background-color: rgba(0, 0, 0, 0.85);
-            color: white;
-            display: flex;
-            align-items: center;
-            padding-left: 1.5rem;
-            font-weight: 500;
-            font-size: 1.6em;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+        @media (max-width: 768px) {
+            nav.sidebar {
+                width: 60px;
+            }
+
+            nav.sidebar .nav-link i {
+                font-size: 1.2rem;
+            }
+
+            nav.sidebar .nav-link {
+                padding: 8px;
+            }
         }
 
-        nav {
-            position: sticky;
-            top: 0;
-            align-self: flex-start;
-        }
-
-        nav.bg-light {
-            background-color: rgba(0, 0, 0, 0.85) !important;
-            border-right: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .card {
-            background-color: rgba(0, 0, 0, 0.75);
-            color: white;
-            border: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-        }
 
         /*Dashboard Clock and Date Styles */
 
@@ -388,24 +421,6 @@
             }
         }
 
-        /* Make sidebar collapsible at small widths */
-        @media (max-width: 768px) {
-            nav.col-auto {
-                width: 60px;
-                padding: 0 !important;
-            }
-
-            nav .nav-link i {
-                font-size: 1.2rem;
-            }
-
-            nav .nav-link {
-                padding: 8px;
-            }
-            .container, .container-fluid {
-                /*padding: 0 10px;*/
-            }
-        }
 
         /*setting section*/
 
@@ -579,41 +594,50 @@
 <div class="container-fluid">
     <div class="row">
 
-        <nav class="col-auto bg-light d-flex flex-column align-items-center vh-100 py-3 border-end">
+        <!-- Hidden checkbox to control toggle -->
+        <input type="checkbox" id="toggleSidebar" hidden>
+
+        <!-- Toggle arrow label -->
+        <label for="toggleSidebar" class="sidebar-toggle-label">
+            <i class="bi bi-chevron-right"></i>
+        </label>
+
+        <!-- Sidebar -->
+        <nav class="sidebar d-flex flex-column align-items-center py-3">
             <ul class="nav nav-pills flex-column mb-auto text-center">
                 <li class="nav-item">
                     <a href="#" class="nav-link active" aria-current="page" id="home-btn">
-                        <i class="bi bi-cup-hot fs-4"></i> <!-- Coffee cup for Home -->
+                        <i class="bi bi-cup-hot fs-4"></i>
                     </a>
                 </li>
                 <li>
                     <a href="#" class="nav-link" id="dashboard-btn">
-                        <i class="bi bi-clipboard-data fs-4"></i> <!-- Dashboard stats -->
+                        <i class="bi bi-clipboard-data fs-4"></i>
                     </a>
                 </li>
                 <li>
                     <a href="#" class="nav-link" id="customer-btn">
-                        <i class="bi bi-people fs-4"></i> <!-- Customers -->
+                        <i class="bi bi-people fs-4"></i>
                     </a>
                 </li>
                 <li>
                     <a href="#" class="nav-link" id="item-btn">
-                        <i class="bi bi-cup-straw fs-4"></i> <!-- Menu Items (like drinks) -->
+                        <i class="bi bi-cup-straw fs-4"></i>
                     </a>
                 </li>
                 <li>
                     <a href="#" class="nav-link" id="order-btn">
-                        <i class="bi bi-receipt-cutoff fs-4"></i> <!-- Orders -->
+                        <i class="bi bi-receipt-cutoff fs-4"></i>
                     </a>
                 </li>
                 <li>
                     <a href="#" class="nav-link" id="settings-btn">
-                        <i class="bi bi-gear-wide fs-4"></i> <!-- Settings -->
+                        <i class="bi bi-gear-wide fs-4"></i>
                     </a>
                 </li>
                 <li>
                     <a href="#" class="nav-link" id="About-btn">
-                        <i class="bi bi-info-circle fs-4"></i> <!-- Help -->
+                        <i class="bi bi-info-circle fs-4"></i>
                     </a>
                 </li>
             </ul>
